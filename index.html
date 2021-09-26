@@ -1,0 +1,43 @@
+<script>
+    var loss,tie;
+    function computerPlay(){
+        var items=["Rock","Paper","Scissors"]
+        return item = items[Math.floor(Math.random()*items.length)];
+    }
+
+    function playRound(playerSelection,computerSelection){
+        if(playerSelection==computerSelection){
+            tie++;
+            return "It is a tie.";
+        }
+        else if(playerSelection == "rock" && computerSelection=="scissors")
+            return "You win! Rock beats Scissors";
+        else if(playerSelection=="paper" && computerSelection=="rock")
+            return "You win! Paper beats Rock";
+        else if(playerSelection=="scissors" && computerSelection=="paper" )
+            return "You win! Scissors beat Paper";
+        else{
+            loss++;
+            return "You lose! "+ computerSelection +" beats " + playerSelection;
+        }    
+    }
+
+    function game(){
+        var counter=0,win;
+        loss=0, tie=0;
+        while(counter<5){
+            var playerSelection = window.prompt("Please enter your choice", "rock");
+            console.log(playRound(playerSelection.toLowerCase(),computerPlay().toLowerCase()));
+            counter++;
+        }
+        win=5-(loss+tie);
+        if(win>loss)
+            console.log("You win!");
+        else if(win==loss)
+            console.log("Its a tie!");
+        else{
+            console.log("You lose!");
+        }
+        
+    }
+</script>
